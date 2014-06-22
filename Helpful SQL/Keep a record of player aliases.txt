@@ -1,0 +1,67 @@
+
+Check http://epochmod.com/forum/index.php?/topic/2813-tracking-player-name-changes/page-2#entry92657 for full details
+
+
+It adds an old & new row per playeruid / alias.  There is also a note column.  The code does not care if that playerUID / alias entry already exists or not.
+ 
+As always, test before using on your live data.  There may be possibilities that have not been considered.
+ 
+Create the player alias table
+
+
+DROP TABLE IF EXISTS `player_alias`;
+
+
+CREATE TABLE IF NOT EXISTS `player_alias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tstamp` datetime, 
+  `action` varchar(3),
+  `playeruid` varchar(255) DEFAULT NULL,
+  `PlayerName` text,
+  `notes` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+Create new trigger
+DELIMITER ;
+DROP TRIGGER IF EXISTS `updateName`;
+
+DELIMITER //
+CREATE TRIGGER `updateName`
+BEFORE UPDATE ON player_data
+FOR EACH ROW
+BEGIN
+  INSERT INTO player_alias (tstamp, action, playeruid, PlayerName, notes) select now(), "old", PlayerUID,playerName, "" from player_data where PlayerUID = NEW.playerUID;
+  INSERT INTO player_alias (tstamp, action, playeruid, PlayerName, notes) VALUES (now(), "new", NEW.PlayerUID,NEW.PlayerName, "");
+END//
+DELIMITER ;
+
+
+What you should get is something like the following in the new player_alias table.
+ 
+ID        tdate            action  playerUID    playername     note
+1    2014-06-22 12:36:00    old    999999999    Armchair        ""
+2    2014-06-22 12:36:00    new    999999999    Right Angle     ""
+3    2014-06-22 12:36:00    old    111111111    Hairy Harry     ""
+4    2014-06-22 12:36:00    new    11111111     Awesome         ""
+5    2014-06-22 12:36:50    old    999999999    Right Angle     ""
+6    2014-06-22 12:36:50    new    999999999    Avacado21       ""
+
+The table can grow rapidly depending on how often players change their names (and how many players you have).
+ 
+A housekeeping script will keep the number of entries down.
+
+
+DROP EVENT IF EXISTS `housekeepName`;
+DELIMITER ;;
+CREATE EVENT `housekeepName` ON SCHEDULE EVERY 1 DAY COMMENT 'Housekeeps the player_alias table' DO DELETE FROM `player_alias` WHERE `tstamp` < DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 DAY) 
+;;
+DELIMITER ;
+
+
+This will run every day and delete any entries older than 30 days.  Change the '30' in the command to increase or decrease the number of days.
+ 
+You can then run sql to find all the playernames used by a playerUID without the need to chop up a text filed.  You can see when the name was changed, what it used to be, what it was changed to and any notes put in by, presumabily admins, relating the that playeruid and playername.
+ 
+From the above example, playerUID changed their playername from "Armchair" to "Right Angle"and then to "Avacado21"
