@@ -126,6 +126,7 @@ if ((count _upgrade) > 0) then {
 		if (_classname in DZE_DoorsLocked) then {
 			_obj setVariable ["CharacterID",dayz_characterID,true];
 			_objectCharacterID = dayz_characterID;
+			_obj setVariable["ownerPUID",ownerID,true];
 		};
 
 		_classname = _newclassname;
