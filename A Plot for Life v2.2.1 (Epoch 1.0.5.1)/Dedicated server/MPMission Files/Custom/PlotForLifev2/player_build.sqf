@@ -157,15 +157,15 @@ if(_IsNearPlot == 0) then {
 	// Find owner
 	_ownerID = _nearestPole getVariable ["ownerPUID","0"];
 
-	// diag_log format["DEBUG BUILDING: %1 = %2", dayz_characterID, _ownerID];
+	 diag_log format["Player_build start: [PlayerUID = %1]  [OwnerID = %2]", _playerUID, _ownerID];
 
 	// check if friendly to owner
 	if(_playerUID == _ownerID) then {  //Keep ownership
 		// owner can build anything within his plot except other plots
+		diag_log text "Player is owner";
 		if(!_isPole) then {
 			_canBuildOnPlot = true;
 		};
-
 	} else {
 		// disallow building plot
 		if(!_isPole) then {
@@ -528,7 +528,8 @@ if (_hasrequireditem) then {
 
 				} else {
 					_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
-
+					_tmpbuilt setVariable ["ownerPUID",_playerUID,true];
+					
 					// fire?
 					if(_tmpbuilt isKindOf "Land_Fire_DZ") then {
 						_tmpbuilt spawn player_fireMonitor;

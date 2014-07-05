@@ -1,4 +1,4 @@
-private ["_nul","_result","_pos","_wsDone","_dir","_isOK","_countr","_objWpnTypes","_objWpnQty","_dam","_selection","_totalvehicles","_object","_idKey","_type","_ownerID","_worldspace","_intentory","_hitPoints","_fuel","_damage","_key","_vehLimit","_hiveResponse","_objectCount","_codeCount","_data","_status","_val","_traderid","_retrader","_traderData","_id","_lockable","_debugMarkerPosition","_vehicle_0","_bQty","_vQty","_BuildingQueue","_objectQueue","_superkey","_shutdown","_res","_hiveLoaded", "_result", "_result1","_result2","_result3", "_ownerPUID"];
+private ["_nul","_result","_pos","_wsDone","_dir","_isOK","_countr","_objWpnTypes","_objWpnQty","_dam","_selection","_totalvehicles","_object","_idKey","_type","_ownerID","_worldspace","_intentory","_hitPoints","_fuel","_damage","_key","_vehLimit","_hiveResponse","_objectCount","_codeCount","_data","_status","_val","_traderid","_retrader","_traderData","_id","_lockable","_debugMarkerPosition","_vehicle_0","_bQty","_vQty","_BuildingQueue","_objectQueue","_superkey","_shutdown","_res","_hiveLoaded"];
 
 dayz_versionNo = 		getText(configFile >> "CfgMods" >> "DayZ" >> "version");
 dayz_hiveVersionNo = 	getNumber(configFile >> "CfgMods" >> "DayZ" >> "hiveVersion");
@@ -27,7 +27,7 @@ if(isnil "MaxMineVeins") then {
 };
 // Custon Configs End
 
-if (isServer and isNil "sm_done") then {
+if (isServer && isNil "sm_done") then {
 
 	serverVehicleCounter = [];
 	_hiveResponse = [];
@@ -89,6 +89,7 @@ if (isServer and isNil "sm_done") then {
 		_idKey = 		_x select 1;
 		_type =			_x select 2;
 		_ownerID = 		_x select 3;
+
 		_worldspace = 	_x select 4;
 		_intentory =	_x select 5;
 		_hitPoints =	_x select 6;
@@ -105,7 +106,6 @@ if (isServer and isNil "sm_done") then {
 				_pos = _worldspace select 1;
 				_wsDone = true;
 			}
-			
 		};			
 		
 		if (!_wsDone) then {
@@ -123,6 +123,8 @@ if (isServer and isNil "sm_done") then {
 		};		
 
 		_ownerPUID = _worldspace select 2;
+		
+		// diag_log format["Server_monitor: [ObjectID = %1]  [ClassID = %2] [_ownerPUID = %3]", _idKey, _type, _ownerPUID];
 		
 		if (_damage < 1) then {
 			//diag_log format["OBJ: %1 - %2", _idKey,_type];
@@ -180,7 +182,7 @@ if (isServer and isNil "sm_done") then {
 				};
 				// Test disabling simulation server side on buildables only.
 				_object enableSimulation false;
-				// used for inplace upgrades and lock/unlock of safe
+				// used for inplace upgrades && lock/unlock of safe
 				_object setVariable ["OEMPos", _pos, true];
 				
 			};
@@ -188,9 +190,9 @@ if (isServer and isNil "sm_done") then {
 			if (count _intentory > 0) then {
 				if (_type in DZE_LockedStorage) then {
 					// Fill variables with loot
-					_object setVariable ["WeaponCargo", (_intentory select 0)];
-					_object setVariable ["MagazineCargo", (_intentory select 1)];
-					_object setVariable ["BackpackCargo", (_intentory select 2)];
+					_object setVariable ["WeaponCargo", (_intentory select 0),true];
+					_object setVariable ["MagazineCargo", (_intentory select 1),true];
+					_object setVariable ["BackpackCargo", (_intentory select 2),true];
 				} else {
 
 					//Add weapons
@@ -206,7 +208,7 @@ if (isServer and isNil "sm_done") then {
 							_object addWeaponCargoGlobal [_x,(_objWpnQty select _countr)];
 						};
 						_countr = _countr + 1;
-					} forEach _objWpnTypes; 
+					} count _objWpnTypes; 
 				
 					//Add Magazines
 					_objWpnTypes = (_intentory select 1) select 0;
@@ -220,7 +222,7 @@ if (isServer and isNil "sm_done") then {
 							_object addMagazineCargoGlobal [_x,(_objWpnQty select _countr)];
 						};
 						_countr = _countr + 1;
-					} forEach _objWpnTypes;
+					} count _objWpnTypes;
 
 					//Add Backpacks
 					_objWpnTypes = (_intentory select 2) select 0;
@@ -232,7 +234,7 @@ if (isServer and isNil "sm_done") then {
 							_object addBackpackCargoGlobal [_x,(_objWpnQty select _countr)];
 						};
 						_countr = _countr + 1;
-					} forEach _objWpnTypes;
+					} count _objWpnTypes;
 				};
 			};	
 			
@@ -240,9 +242,9 @@ if (isServer and isNil "sm_done") then {
 				{
 					_selection = _x select 0;
 					_dam = _x select 1;
-					if (_selection in dayZ_explosiveParts and _dam > 0.8) then {_dam = 0.8};
+					if (_selection in dayZ_explosiveParts && _dam > 0.8) then {_dam = 0.8};
 					[_object,_selection,_dam] call object_setFixServer;
-				} forEach _hitpoints;
+				} count _hitpoints;
 
 				_object setFuel _fuel;
 
@@ -251,7 +253,7 @@ if (isServer and isNil "sm_done") then {
 					//_object setvelocity [0,0,1];
 					_object call fnc_veh_ResetEH;		
 					
-					if(_ownerID != "0" and !(_object isKindOf "Bicycle")) then {
+					if(_ownerID != "0" && !(_object isKindOf "Bicycle")) then {
 						_object setvehiclelock "locked";
 					};
 					
@@ -265,7 +267,7 @@ if (isServer and isNil "sm_done") then {
 			//Monitor the object
 			PVDZE_serverObjectMonitor set [count PVDZE_serverObjectMonitor,_object];
 		};
-	} forEach (_BuildingQueue + _objectQueue);
+	} count (_BuildingQueue + _objectQueue);
 	// # END SPAWN OBJECTS #
 
 	// preload server traders menu data into cache

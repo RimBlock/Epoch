@@ -217,8 +217,6 @@ if (!isNull cursorTarget && !_inVehicle && !_isPZombie && (player distance curso
     		s_player_maintain_area_preview = -1;
 	 };
 
-	// diag_log format["fn_selfactions: [_playerUID: %1] [_ownerID: %2]",_playerUID, _ownerID];
-	 
 	// CURSOR TARGET ALIVE
 	if(_isAlive) then {
 		
@@ -229,18 +227,27 @@ if (!isNull cursorTarget && !_inVehicle && !_isPZombie && (player distance curso
 			};
 		};
 		
+		//diag_log format["fn_selfactions remove: [PlayerUID = %1]  [OwnerID = %2] [Is Modular: %3] [Object: %4]", _playerUID, _ownerID,_isModular, cursortarget];
+		
 		//Allow owners to delete modulars
-                if(_isModular && (_playerUID == _ownerID)) then {
-                        if(_hasToolbox && "ItemCrowbar" in _itemsPlayer) then {
-                                _player_deleteBuild = true;
-                        };
-                };
+
+  		diag_log format["fn_actons: [PlayerUID: %1] [_ownerID: %2] [_isModular: %3] [typeOfCursorTarget: %4]",_playerUID, _ownerID, _isModular, _typeOfCursorTarget];
+
+		if(_isModular && (_playerUID == _ownerID)) then {
+             if(_hasToolbox && "ItemCrowbar" in _itemsPlayer) then {
+				// diag_log text "fn_selfactions remove: [can remove modular item]";
+                    _player_deleteBuild = true;
+             };
+         };
 		//Allow owners to delete modular doors without locks
-				if(_isModularDoor && (_playerUID == _ownerID)) then {
-                        if(_hasToolbox && "ItemCrowbar" in _itemsPlayer) then {
-                                _player_deleteBuild = true;
-                        };		
-				};	
+		
+		diag_log format["fn_actons: [PlayerUID: %1] [_ownerID: %2] [_isModularDoor: %3] [typeOfCursorTarget: %4]",_playerUID, _ownerID, _isModularDoor, _typeOfCursorTarget];
+		
+		if(_isModularDoor && (_playerUID == _ownerID)) then {
+            if(_hasToolbox && "ItemCrowbar" in _itemsPlayer) then {
+				_player_deleteBuild = true;
+             };		
+		 };	
 		// CURSOR TARGET VEHICLE
 		if(_isVehicle) then {
 			

@@ -69,7 +69,10 @@ if (isServer) then {
 	
 	// Add trader citys
 	_nil = [] execVM "\z\addons\dayz_server\missions\DayZ_Epoch_11.Chernarus\mission.sqf";
-	_serverMonitor = 	[] execVM "Custom\PlotForLifev2\server_monitor.sqf";
+	
+	diag_log text "APlotForLife";
+	_serverMonitor = 	[] execVM "Custom\PlotForLifev2.2.1\server_monitor.sqf";
+	diag_log format["[_serverMonitor: %1]",_serverMonitor];
 };
 
 if (!isDedicated) then {

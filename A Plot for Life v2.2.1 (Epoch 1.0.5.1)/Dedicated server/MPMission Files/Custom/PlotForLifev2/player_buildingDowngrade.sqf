@@ -139,6 +139,10 @@ if ((count _upgrade) > 0) then {
 		// Set location
 		_object setPosATL _location;
 
+		// Set Owner.
+		_object setVariable ["ownerPUID",_ownerID,true];
+		
+		diag_log format["Player_buildingdowngrade: [newclassname: %1] [_ownerID: %2] [_objectCharacterID: %2]",_newclassname, _ownerID, _objectCharacterID];
 
 		cutText [format[(localize "str_epoch_player_142"),_text], "PLAIN DOWN", 5];
 

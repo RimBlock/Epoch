@@ -151,6 +151,9 @@ if ((count _upgrade) > 0) then {
 			// Set location
 			_object setPosATL _location;
 
+			// Set Owner.
+			_object setVariable ["ownerPUID",_ownerID,true];
+			
 			if (_lockable == 3) then {
 
 				_combination_1 = floor(random 10);
