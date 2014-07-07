@@ -177,7 +177,7 @@ if (!isNull _menClose && _hasPatient && !r_drag_sqf && !r_action && !_inVehicle 
 		// should only fire if cursor target is man && not vehicle
 		if ((isPlayer _unit) && !(_playerUID in _friendlies)) then {
 			r_action = true;
-			_action = _unit addAction ["Tag as friendly", "\z\addons\dayz_code\actions\player_tagFriendly.sqf", [], 0, false, true, "", ""];
+			_action = _unit addAction ["Tag as friendly", "Custom\PlotForLifev2\player_tagFriendly.sqf", [], 0, false, true, "", ""];
 			r_player_actions set [count r_player_actions,_action];
 		};
 		
