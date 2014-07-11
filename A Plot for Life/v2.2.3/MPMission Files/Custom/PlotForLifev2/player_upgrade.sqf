@@ -139,6 +139,7 @@ if ((count _upgrade) > 0) then {
 
 			// Current charID
 			_objectCharacterID 	= _obj getVariable ["CharacterID","0"];
+			_ownerID = _obj getVariable["ownerPUID","0"];
 
 			_classname = _newclassname;
 			
@@ -151,6 +152,9 @@ if ((count _upgrade) > 0) then {
 			// Set location
 			_object setPosATL _location;
 
+			// Set Owner.
+			_object setVariable ["ownerPUID",_ownerID,true];
+			
 			if (_lockable == 3) then {
 
 				_combination_1 = floor(random 10);

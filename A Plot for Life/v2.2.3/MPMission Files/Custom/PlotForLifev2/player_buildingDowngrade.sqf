@@ -60,6 +60,7 @@ _obj = _this select 3;
 
 // Current charID
 _objectCharacterID 	= _obj getVariable ["CharacterID","0"];
+_ownerID = _obj getVariable["ownerPUID","0"];
 
 if(DZE_Lock_Door != _objectCharacterID) exitWith {  DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_49") , "PLAIN DOWN"]; };
 

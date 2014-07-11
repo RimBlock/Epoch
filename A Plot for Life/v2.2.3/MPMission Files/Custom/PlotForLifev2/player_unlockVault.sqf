@@ -79,7 +79,7 @@ if ((_characterID == dayz_combination) || (_ownerID == dayz_playerUID)) then {
 			_holder setPosATL _pos;
 			player reveal _holder;
 	
-			_holder setVariable["CharacterID",_ownerID,true];
+			_holder setVariable["CharacterID",_characterID,true];
 			_holder setVariable["ObjectID",_objectID,true];
 			_holder setVariable["ObjectUID",_objectUID,true];
 			_holder setVariable ["OEMPos", _pos, true];
