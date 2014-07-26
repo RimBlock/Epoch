@@ -158,7 +158,7 @@ if(!_cancel) then {
 			_combination = format["%1%2%3%4",_combination_1,_combination_2,_combination_3,_combination_4];
 
 			_tent setVariable ["CharacterID",_combination,true];
-			_tent setVariable ["ownerPUID",_playerUID,true];
+			_object setVariable ["ownerPUID",_playerUID,true];
 			_tent setVariable ["OEMPos",_location,true];
 
 			//["PVDZE_obj_Publish",[_combination,_tent,[_dir,_location],"VaultStorageLocked"]] call callRpcProcedure;
