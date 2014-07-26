@@ -14,9 +14,6 @@ Bug fix on vault pitch (placing safes).
 v2.2.4 (ARMA II OA 125548 with SteamID - Epoch 1.0.5.1)
 Fix to allow access to safes if not the owner.
 
-Previous releases
-
-[spoiler]
 v2.2.3 (ARMA II OA 125548 with SteamID - Epoch 1.0.5.1)
 Bug fix with vault combinations and upgrade / downgrade ownership.
 
@@ -29,7 +26,8 @@ Bug fix: Upgrade / Downgraded item remove option.
 
 v2.1 (ARMA II OA 125548 with SteamID - Epoch 1.0.5.1)
 Update for Epoch 1.0.5.1
-Bug fix.  
+Bug fix. 
+ 
 v2 (ARMA II OA 125548 with SteamID - Epoch 1.0.5)
 Now works with full length SteamID.  
 Works with safes, tents as well as Epoch buildables.
