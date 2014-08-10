@@ -8,6 +8,9 @@ This Epoch mod allows players to retain ownership of their buildable objects (ba
 
 Version History
 
+v2.2.6 (ARMA II OA 125548 with SteamID - Epoch 1.0.5.1)
+Bug fix on vault pitch (placing safes).
+
 v2.2.5 (ARMA II OA 125548 with SteamID - Epoch 1.0.5.1)
 Bug fix on vault pitch (placing safes).
 
