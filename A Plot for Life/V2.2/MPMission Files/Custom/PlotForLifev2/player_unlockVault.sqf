@@ -31,7 +31,7 @@ _text = 		getText (configFile >> "CfgVehicles" >> _objType >> "displayName");
 _alreadyPacking = _obj getVariable["packing",0];
 _claimedBy = _obj getVariable["claimed","0"];
 _characterID = _obj getVariable["CharacterID","0"];
-_ownerID = _obj getVariable["ownerPUID","0"];;
+_ownerID = _obj getVariable["ownerPUID","0"];
 
 
 if (_alreadyPacking == 1) exitWith {DZE_ActionInProgress = false; cutText [format[(localize "str_epoch_player_124"),_text], "PLAIN DOWN"]};
