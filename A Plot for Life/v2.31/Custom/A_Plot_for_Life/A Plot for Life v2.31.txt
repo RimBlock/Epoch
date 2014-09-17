@@ -2,7 +2,7 @@ Install Instructions
 
 Copy the custom folder to you mpmissions/[map] folder.
 
-Create a custom folder in the server root directory (the opne you have the @mod files in) and copy the contents of the Server folder in to it (you can merge them in to the dayz_server.pbo but need to change the references).
+Create a custom folder in the server root directory (the one you have the @mod files in) and copy the contents of the Server folder in to it (you can merge them in to the dayz_server.pbo but need to change the references).
 
 Turn on A plot for Life (check ownership against SteamID).
 DZE_APlotforLife = true;
@@ -10,18 +10,12 @@ DZE_APlotforLife = true;
 Turn on Take Plot Ownership.
 DZE_PlotOwnership = true;
 
-Merge files for Snap Build Pro and the modular player build framework.
+Merge files for Snap Build Pro.
 
-Snap Build Pro has been merged with the player build framework by Raymix for Epoch 1.0.5.2.  DOwnload both and extract them.  Copy the files to a directory of your choice but exclude the following files which I have supplied already merged and linked in the compiles.sqf;
- - player_build.sqf
- - player_build_create.sqf
- - player_build_plotCheck.sqf
- - player_build_publish.sqf
- - snap_build.sqf
- - modular_build.sqf
+Download Snap Build Pro from (https://github.com/raymix/SnapPro) and Install the following files only from Snap Build Pro (do not overwrite any files included with A Plot for Life).
 
-Link the other files from Snap Build Pro and the modular player build framework in the compiles.sqf as needed (the lines should already be there, just search for DZE_modularBuild).
-
+dayz_spaceInterrupt.sqf (change the path in A Plot for Life supplied compiles.sqf to point to wherever you saved this file)
+snappoints.hpp (Add '#include "custom\snap_pro\snappoints.hpp"' without the ' ' to the bottom of description.ext)
 
 Turn on Snap Build Pro and the modular player build framework.
 DZE_modularBuild = true;
