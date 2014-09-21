@@ -572,6 +572,8 @@ if(isNil "DZE_maintainRange") then {
 	DZE_maintainRange = ((DZE_PlotPole select 0)+20);
 };
 
+DZE_snap_build_file = "";
+
 DZE_REPLACE_WEAPONS = [["Crossbow","ItemMatchbox","ItemHatchet"],["Crossbow_DZ","ItemMatchbox_DZE","ItemHatchet_DZE"]];
 
 if(isNil "dayz_zedSpawnVehCount") then {
