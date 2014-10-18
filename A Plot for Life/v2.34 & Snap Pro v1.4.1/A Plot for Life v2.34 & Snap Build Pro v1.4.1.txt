@@ -1,4 +1,12 @@
 
+A Plot for Life mod by RimBlock.
+
+If this mod was not downloaded from my GitHub or my thread on EpochMod.com then please let me know by PMing me on Epoch Mod.
+
+EpochMod thread: http://epochmod.com/forum/index.php?/topic/11042-release-a-plot-for-life-v233-keep-your-buildables-on-death-take-plot-ownership/
+
+GitHub: https://github.com/RimBlock/Epoch/tree/master/A%20Plot%20for%20Life
+
 
 *** Install Instructions ***
 
