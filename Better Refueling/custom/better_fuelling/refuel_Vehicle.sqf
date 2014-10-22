@@ -283,8 +283,13 @@ while {_moreToFill} do {
 				};
 
 				if (_newFuel > 0.994) then{
-					diag_log text "Refuel_Vehicle_menu Destination fuel amount = 0.994 = 100% with rounding.  Adjusting to 99%"; 
-					_percent = 99;
+					if (_newFuel < 1) then{
+						diag_log text "Refuel_Vehicle_menu Destination fuel amount = 0.994 = 100% with rounding.  Adjusting to 99%"; 
+						_percent = 99;
+					else
+						diag_log text "Refuel_Vehicle_menu Destination fuel amount = 1 (full)"; 
+						_percent = 100;
+					};
 				}else{
 					_percent = round((_newFuel)*100);
 				};
