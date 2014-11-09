@@ -1,6 +1,6 @@
 # A Plot for Life
-by Rimblock
-[@ EpochMod.com](http://epochmod.com/forum/index.php?/user/12612-rimblock/)
+by Rimblock<br>
+[@ EpochMod.com](http://epochmod.com/forum/index.php?/user/12612-rimblock/)<br>
 [On GitHub](https://github.com/RimBlock)
 
 If this mod was not downloaded from my GitHub or my thread on EpochMod.com then please let me know by PMing me on Epoch Mod.
@@ -22,7 +22,7 @@ Features include
 #Install Instructions
 
 1. Copy the `custom` folder in to your mpmissions/[map] folder.
-2. Create a `custom` folder in the server root directory (the one you have the @mod files in) and copy the contents of the Server folder in to it (you can merge them in to the dayz_server.pbo but need to change the default mod references).
+2. Create a `custom` folder in the server root directory (the one you have the @mod files in) and copy the contents of the Server folder in to it (you can merge them in to the dayz_server.pbo but need to change the default references).
 
 #Instructions for linking in to your mission
 
