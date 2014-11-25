@@ -36,6 +36,8 @@ if ((_isowner select 0 )) then {
 				PVDZE_obj_Delete = [_objectID, _objectUID, player];
 				publicVariableServer "PVDZE_obj_Delete";
 				
+				_object setvariable["ObjectID", "0"];
+				
 				if (_classname in DZE_DoorsLocked) then {
 					_charID =		_object getVariable ["characterID",dayz_characterID];				
 				}else{
