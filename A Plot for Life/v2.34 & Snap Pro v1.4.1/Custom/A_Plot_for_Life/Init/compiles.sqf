@@ -298,15 +298,15 @@ if (!isDedicated) then {
 		};
 	};
 
-    player_guiControlFlash =     {
-        private["_control"];
-        _control = _this;
-        if (ctrlShown (_control select 0)) then {
-            {_x ctrlShow false} foreach _control;
-        } else {
-            {_x ctrlShow true} foreach _control;
-        };
-    };
+	player_guiControlFlash = 	{
+		private["_control"];
+		_control = _this;
+		if (ctrlShown _control) then {
+			_control ctrlShow false;
+		} else {
+			_control ctrlShow true;
+		};
+	};
 	
 	gearDialog_create = {
 		private ["_i","_dialog"];
