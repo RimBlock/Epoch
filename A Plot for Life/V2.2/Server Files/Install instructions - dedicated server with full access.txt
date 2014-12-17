@@ -1,7 +1,0 @@
-Plot for Life - Server files install [dedicated server with full access].
-
-CVopy the custom filder into your servers main folder (where you also have the @DayZ_Epoch & @DayZ_Epoch_Server folders).
-
-You should now have 
-[Epoch server main folder]\custom\APlotForLifev2.2.1\server_monitor.sqf
-
