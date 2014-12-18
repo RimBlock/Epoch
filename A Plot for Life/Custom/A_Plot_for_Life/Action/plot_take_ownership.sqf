@@ -33,8 +33,12 @@ if ((_isowner select 0 )) then {
 				_objectID 	= _object getVariable ["ObjectID","0"];
 				_objectUID	= _object getVariable ["ObjectUID","0"];
 				
+				sleep 0.01
+				
 				PVDZE_obj_Delete = [_objectID, _objectUID, player];
 				publicVariableServer "PVDZE_obj_Delete";
+				
+				sleep 0.01
 				
 				_object setvariable["ObjectID", "0"];
 				
@@ -79,11 +83,7 @@ if ((_isowner select 0 )) then {
 				PVDZE_fullobj_Publish = [_charID,_object,_worldspace,_classname, _inventory, _hitpoints, _damage, _fuel];
 				publicVariableServer "PVDZE_fullobj_Publish";
 				
-				if !(DZE_APlotforLife) then {
-					_object setvariable["ownerPUID", dayz_characterID];
-				}else{
-					_object setvariable["ownerPUID", _playerUID];	
-				};	
+				_object setvariable["ownerPUID", _playerUID];	
 			};
 		};
 	} count _findNearestObjects;

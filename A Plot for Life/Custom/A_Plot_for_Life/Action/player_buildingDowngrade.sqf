@@ -10,14 +10,10 @@ DZE_ActionInProgress = true;
 player removeAction s_player_downgrade_build;
 s_player_downgrade_build = 1;
 
-_distance = 30;
+_distance = DZE_PlotPole select 0;
 _needText = localize "str_epoch_player_246";
 
-if (DZE_APlotforLife) then {
-	_playerUID = [player] call FNC_GetPlayerUID;
-}else{
-	_playerUID = dayz_characterID;
-};
+_playerUID = [player] call FNC_GetPlayerUID;
 
 // check for near plot
 _findNearestPoles = nearestObjects [(vehicle player), ["Plastic_Pole_EP1_DZ"], _distance];
@@ -146,13 +142,12 @@ if ((count _upgrade) > 0) then {
 		_object setPosATL _location;
 
 		// Set Owner.
-		_object setVariable ["ownerPUID",_ownerID,true];
+		_object setVariable ["ownerPUID",_playerUID,true];
 
 		//diag_log format["Player_buildingdowngrade: [newclassname: %1] [_ownerID: %2] [_objectCharacterID: %2]",_newclassname, _ownerID, _objectCharacterID];
 
 		cutText [format[(localize "str_epoch_player_142"),_text], "PLAIN DOWN", 5];
 
-		_playerUID = [player] call FNC_GetPlayerUID;
 		PVDZE_obj_Swap = [_objectCharacterID,_object,[_dir,_location,_playerUID],_classname,_obj,player];
 		publicVariableServer "PVDZE_obj_Swap";
 

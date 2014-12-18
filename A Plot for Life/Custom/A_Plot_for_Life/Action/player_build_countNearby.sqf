@@ -1,4 +1,4 @@
-// disallow building if too many objects are found within 30m (by default)
+// disallow building if too many objects are found within a set distance (by default)
 private ["_cnt","_pos"];
 
 _pos = [player] call FNC_GetPos;

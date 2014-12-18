@@ -20,6 +20,8 @@ if(isNumber (configFile >> "CfgVehicles" >> _classname >> "requireplot")) then {
 	_requireplot = getNumber(configFile >> "CfgVehicles" >> _classname >> "requireplot");
 };
 
+if (_requireplot == 0) then{_requireplot = false}else{_requireplot = true};
+
 _isAllowedUnderGround = 1; //check if allowed to build under terrain
 if(isNumber (configFile >> "CfgVehicles" >> _classname >> "nounderground")) then {
 	_isAllowedUnderGround = getNumber(configFile >> "CfgVehicles" >> _classname >> "nounderground");

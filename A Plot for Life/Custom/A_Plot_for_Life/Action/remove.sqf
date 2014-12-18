@@ -2,7 +2,7 @@
 delete object from db with extra waiting by [VB]AWOL
 parameters: _obj
 */
-private ["_activatingPlayer","_obj","_objectID","_objectUID","_started","_finished","_animState","_isMedic","_isOk","_proceed","_counter","_limit","_objType","_sfx","_dis","_itemOut","_countOut","_selectedRemoveOutput","_friendlies","_nearestPole","_ownerID","_refundpart","_isWreck","_findNearestPoles","_findNearestPole","_IsNearPlot","_brokenTool","_removeTool","_isDestructable","_isRemovable","_objOwnerID","_isOwnerOfObj","_preventRefund","_ipos","_item","_radius","_isWreckBuilding","_nameVehicle","_isModular","_playerUID"];
+private ["_activatingPlayer","_obj","_objectID","_objectUID","_started","_finished","_animState","_isMedic","_isOk","_proceed","_counter","_limit","_objType","_sfx","_dis","_itemOut","_countOut","_selectedRemoveOutput","_friendlies","_nearestPole","_ownerID","_refundpart","_isWreck","_findNearestPoles","_findNearestPole","_IsNearPlot","_brokenTool","_removeTool","_isDestructable","_isRemovable","_objOwnerID","_isOwnerOfObj","_preventRefund","_ipos","_item","_radius","_isWreckBuilding","_nameVehicle","_isModular","_playerUID","_distance"];
 
 if(DZE_ActionInProgress) exitWith { cutText [(localize "str_epoch_player_88") , "PLAIN DOWN"]; };
 DZE_ActionInProgress = true;
@@ -11,18 +11,10 @@ player removeAction s_player_deleteBuild;
 s_player_deleteBuild = 1;
 
 _obj = _this select 3;
-
 _activatingPlayer = player;
-
 _objOwnerID = _obj getVariable["ownerPUID","0"];
-
-if (DZE_APlotforLife) then {
-	_playerUID = [player] call FNC_GetPlayerUID;
-	_isOwnerOfObj = (_objOwnerID == _playerUID);
-}else{
-	_playerUID = dayz_characterID;
-	_isOwnerOfObj = (_objOwnerID == dayz_characterID);
-};
+_playerUID = [player] call FNC_GetPlayerUID;
+_isOwnerOfObj = (_objOwnerID == _playerUID);
 
 if (_obj in DZE_DoorsLocked) exitWith { DZE_ActionInProgress = false; cutText [(localize "STR_EPOCH_ACTIONS_20"), "PLAIN DOWN"];};
 if(_obj getVariable ["GeneratorRunning", false]) exitWith {DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_89"), "PLAIN DOWN"];};
@@ -41,6 +33,7 @@ _isRemovable = _objType in DZE_isRemovable;
 _isWreckBuilding = _objType in DZE_isWreckBuilding;
 _isMine = _objType in ["Land_iron_vein_wreck","Land_silver_vein_wreck","Land_gold_vein_wreck"];
 _isModular = _obj isKindOf "ModularItems";
+_distance = DZE_PlotPole select 0;
 
 _limit = 3;
 if (DZE_StaticConstructionCount > 0) then {
@@ -52,7 +45,7 @@ else {
 	};
 };
 
-_findNearestPoles = nearestObjects[player, ["Plastic_Pole_EP1_DZ"], 30];
+_findNearestPoles = nearestObjects[player, ["Plastic_Pole_EP1_DZ"], _distance];
 _findNearestPole = [];
 {if (alive _x) then {_findNearestPole set [(count _findNearestPole),_x];};} count _findNearestPoles;
 

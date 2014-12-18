@@ -4,6 +4,7 @@ _object = _this select 0;
 _isAllowedUnderGround = _this select 1;
 _location1 = _this select 2;
 _objectHelper  = _this select 3;
+_maxBuildDistance = _this select 4;
 
 _passArray = [];
 

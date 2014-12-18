@@ -22,12 +22,6 @@ _location = player modeltoworld [_offset_x,_offset_y,_offset_z];
 
 _playerUID = [player] call FNC_GetPlayerUID;
 
-if (DZE_APlotforLife) then {
-	_OwnerUID = _playerUID;
-}else{
-	_OwnerUID = dayz_characterID;
-};
-
 // Allow placement anywhere.
 
 _isOk = true;
@@ -92,8 +86,6 @@ detach _tmpvault;
 
 _vault_location = (getPosATL _tmpvault);
 
-
-
 // Make sure vault is not placed on road. 
 if (isOnRoad _vault_location) then { _isOk = true; };
 // Make sure vault is not placed in trader citys
@@ -140,10 +132,8 @@ if(!_cancel) then {
 			_isBuilding = [(vehicle player),_building] call fnc_isInsideBuilding;
 
 			if(_isBuilding) then {
-			
 				_ppos = _building worldToModel _vault_location;
 				_location = _building modelToWorld _ppos;
-
 			} else {
 				_location = player modelToWorld [_offset_x,_offset_y,_offset_z];
 			};
@@ -165,10 +155,9 @@ if(!_cancel) then {
 			_combination = format["%1%2%3%4",_combination_1,_combination_2,_combination_3,_combination_4];
 
 			_tent setVariable ["CharacterID",_combination,true];
-			_tent setVariable ["ownerPUID",_OwnerUID,true];
+			_tent setVariable ["ownerPUID",_playerUID,true];
 			_tent setVariable ["OEMPos",_location,true];
 
-			//["PVDZE_obj_Publish",[_combination,_tent,[_dir,_location],"VaultStorageLocked"]] call callRpcProcedure;
 			PVDZE_obj_Publish = [_combination,_tent,[_dir,_location, _playerUID],"VaultStorageLocked"];
 			publicVariableServer  "PVDZE_obj_Publish";
 	
