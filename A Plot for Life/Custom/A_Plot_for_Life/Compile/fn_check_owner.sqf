@@ -7,7 +7,7 @@ _Object = _this select 1;
 _Owner = false;
 _friendly = false;
 
-_playerUID = [false] call FNC_GetPlayerUID;
+_playerUID = [_player] call FNC_GetPlayerUID;
 
 _ObjectOwner = _object getVariable ["ownerPUID","0"];
 
