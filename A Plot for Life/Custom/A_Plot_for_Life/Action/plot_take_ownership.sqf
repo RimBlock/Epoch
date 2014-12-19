@@ -34,12 +34,12 @@ if ((_isowner select 0 )) then {
 				_objectID 	= _object getVariable ["ObjectID","0"];
 				_objectUID	= _object getVariable ["ObjectUID","0"];
 				
-				sleep 0.01
+				sleep 0.01;
 				
 				PVDZE_obj_Delete = [_objectID, _objectUID, player];
 				publicVariableServer "PVDZE_obj_Delete";
 				
-				sleep 0.01
+				sleep 0.01;
 				
 				_object setvariable["ObjectID", "0"];
 				
