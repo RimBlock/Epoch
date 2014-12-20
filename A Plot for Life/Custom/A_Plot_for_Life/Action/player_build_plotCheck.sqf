@@ -31,9 +31,6 @@ if(_IsNearPlot == 0) then {
 } else {
 	// Since there are plot poles nearby we need to check ownership && friend status
 
-	// check nearest pole only
-	_nearestPole = _findNearestPole select 0;
-
 	_buildcheck = [player, _nearestPole] call FNC_check_owner;
 	_isowner = _buildcheck select 0;
 	_isfriendly = _buildcheck select 1;

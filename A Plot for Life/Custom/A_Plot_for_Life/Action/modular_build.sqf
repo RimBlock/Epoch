@@ -2,7 +2,7 @@
 if(DZE_ActionInProgress) exitWith { cutText [(localize "str_epoch_player_40") , "PLAIN DOWN"]; };
 DZE_ActionInProgress = true;
 
-private ["_itemConfig","_classname","_classnametmp","_require","_text","_ghost","_lockable","_requireplot","_isAllowedUnderGround","_offset","_isPole","_isLandFireDZ","_hasRequired","_hasrequireditem","_reason","_buildObject","_location1","_object","_objectHelper","_position","_controls","_cancel","_dir","_plot_check_result","_nearest_pole","_maxBuildDistance"];
+private ["_itemConfig","_classname","_classnametmp","_require","_text","_ghost","_lockable","_requireplot","_isAllowedUnderGround","_offset","_isPole","_isLandFireDZ","_hasRequired","_hasrequireditem","_reason","_buildObject","_location1","_object","_objectHelper","_position","_controls","_cancel","_dir","_plot_check_result","_nearest_pole"];
 
 /*Basic Defines*/
 DZE_Q = false;
@@ -75,9 +75,8 @@ _hasrequireditem = _hasRequired select 0; //bool
 		_location1 = _buildObject select 0; //array
 		_object = _buildObject select 1; //Obj
 		_objectHelper = _buildObject select 2; //Obj
-		_maxBuildDistance = _buildObject select 3;
 		
-		_controls = [_object, _isAllowedUnderGround, _location1, _objectHelper,_maxBuildDistance] call player_build_controls;
+		_controls = [_object, _isAllowedUnderGround, _location1, _objectHelper] call player_build_controls;
 
 		//define items collected from function
 		_cancel = _controls select 0; //bool

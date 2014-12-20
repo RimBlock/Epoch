@@ -2,7 +2,7 @@
 delete object from db with extra waiting by [VB]AWOL
 parameters: _obj
 */
-private ["_activatingPlayer","_obj","_objectID","_objectUID","_started","_finished","_animState","_isMedic","_isOk","_proceed","_counter","_limit","_objType","_sfx","_dis","_itemOut","_countOut","_selectedRemoveOutput","_friendlies","_nearestPole","_ownerID","_refundpart","_isWreck","_findNearestPoles","_findNearestPole","_IsNearPlot","_brokenTool","_removeTool","_isDestructable","_isRemovable","_objOwnerID","_isOwnerOfObj","_preventRefund","_ipos","_item","_radius","_isWreckBuilding","_nameVehicle","_isModular","_playerUID","_distance"];
+private ["_activatingPlayer","_obj","_objectID","_objectUID","_started","_finished","_animState","_isMedic","_isOk","_proceed","_counter","_limit","_objType","_sfx","_dis","_itemOut","_countOut","_selectedRemoveOutput","_friendlies","_ownerID","_refundpart","_isWreck","_brokenTool","_removeTool","_isDestructable","_isRemovable","_objOwnerID","_isOwnerOfObj","_preventRefund","_ipos","_item","_radius","_isWreckBuilding","_nameVehicle","_isModular","_playerUID","_distance","_plotcheck","_IsNearPlot","_nearestPole","_buildcheck","_isowner","_isfriendly"];
 
 if(DZE_ActionInProgress) exitWith { cutText [(localize "str_epoch_player_88") , "PLAIN DOWN"]; };
 DZE_ActionInProgress = true;
@@ -45,27 +45,19 @@ else {
 	};
 };
 
-_findNearestPoles = nearestObjects[player, ["Plastic_Pole_EP1_DZ"], _distance];
-_findNearestPole = [];
-{if (alive _x) then {_findNearestPole set [(count _findNearestPole),_x];};} count _findNearestPoles;
-
-_IsNearPlot = count (_findNearestPole);
+_plotcheck = [player, false] call FNC_find_plots;
+_distance = _plotcheck select 0;
+_IsNearPlot = _plotcheck select 1;
+_nearestPole = _plotcheck select 2;
 
 if(_IsNearPlot >= 1) then {
 
-	_nearestPole = _findNearestPole select 0;
-
-	// Find owner
-	_ownerID = _nearestPole getVariable["ownerPUID","0"];
-
-	// check if friendly to owner
-	if(_playerUID != _ownerID) then {
-
-		_friendlies		= player getVariable ["friendlyTo",[]];
-		// check if friendly to owner
-		if(!(_ownerID in _friendlies)) then {
-			_limit = round(_limit*2);
-		};
+	// Since there are plot poles nearby we need to check ownership && friend status
+	_buildcheck = [player, _nearestPole] call FNC_check_owner;
+	_isowner = _buildcheck select 0;
+	_isfriendly = _buildcheck select 1;
+	if (!(_isowner) && !(_isfriendly)) then {
+		_limit = round(_limit*2);
 	};
 };
 
