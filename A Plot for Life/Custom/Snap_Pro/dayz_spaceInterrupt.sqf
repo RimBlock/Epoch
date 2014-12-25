@@ -86,7 +86,7 @@ if (_dikCode in actionKeys "MoveBack") exitWith {r_interrupt = true; if (DZE_Sur
 
 //Prevent exploit of glitching through doors
 if (_dikCode in actionKeys "Prone") then {
-	_doors = nearestObjects [player, DZE_DoorsLocked, 3];
+	_doors = (position player) nearEntities [DZE_DoorsLocked, 3];
 	if (count _doors > 0) then {
 		_handled = true;
 	};
@@ -112,7 +112,7 @@ if (_dikCode in (actionKeys "GetOver")) then {
 		_handled = true;
 		DZE_PZATTACK = true;
 	} else {
-		_nearbyObjects = nearestObjects[getPosATL player, dayz_disallowedVault, 8];
+		_nearbyObjects = (position player) nearEntities [dayz_disallowedVault, 8];
 		if (count _nearbyObjects > 0) then {
 			if((diag_tickTime - dayz_lastCheckBit > 4)) then {
 				[objNull, player, rSwitchMove,"GetOver"] call RE;
