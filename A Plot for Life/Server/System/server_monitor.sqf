@@ -117,15 +117,11 @@ if (isServer && isNil "sm_done") then {
 		
 		// Realign characterID to OwnerPUID - need to force save though.
 		
-		if (DZE_APlotforLife) then {
-			if (count _worldspace < 3) then
-			{
-				_worldspace set [count _worldspace, "0"];
-			};		
-			_ownerPUID = _worldspace select 2;
-		} else {
-			_ownerPUID = _ownerID;
-		};
+		if (count _worldspace < 3) then
+		{
+			_worldspace set [count _worldspace, "0"];
+		};		
+		_ownerPUID = _worldspace select 2;
 		
 		// diag_log format["Server_monitor: [ObjectID = %1]  [ClassID = %2] [_ownerPUID = %3]", _idKey, _type, _ownerPUID];
 		

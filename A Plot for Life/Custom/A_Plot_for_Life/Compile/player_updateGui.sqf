@@ -152,13 +152,8 @@ if (!isNull _humanityTarget && isPlayer _humanityTarget && alive _humanityTarget
 		// Display name if player opt-in || if friend
 		_friendlies = player getVariable ["friendlies", []];
 		
-		if (DZE_APlotforLife) then {
-			_playerUID = [player] call FNC_GetPlayerUID;
-			_rplayerUID = [_humanityTarget] call FNC_GetPlayerUID;
-		}else{
-			_playerUID = player getVariable ["CharacterID", "0"];
-			_rplayerUID = _humanityTarget getVariable ["CharacterID", "0"];
-		};
+		_playerUID = [player] call FNC_GetPlayerUID;
+		_rplayerUID = [_humanityTarget] call FNC_GetPlayerUID;
 		
 		_rfriendlies = _humanityTarget getVariable ["friendlies", []];
 		_rfriendlyTo = _humanityTarget getVariable ["friendlyTo", []];

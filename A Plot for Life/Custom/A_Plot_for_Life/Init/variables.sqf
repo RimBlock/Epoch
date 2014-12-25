@@ -548,14 +548,8 @@ if (isNil "DZE_selfTransfuse_Values") then {
 if (isNil "helperDetach") then {
 	helperDetach = false;
 };
-if (isNil "DZE_modularBuild") then {
-	DZE_modularBuild = false;
-};
 if (isNil "DZE_snapExtraRange") then {
 	DZE_snapExtraRange = 0;
-};
-if (isNil "DZE_APlotforLife") then {
-	DZE_APlotforLife = false;
 };
 if (isNil "DZE_PlotOwnership") then {
 	DZE_PlotOwnership = false;

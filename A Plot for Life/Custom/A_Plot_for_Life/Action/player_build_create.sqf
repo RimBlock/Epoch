@@ -1,10 +1,13 @@
 //create an object for default build system style
-private ["_passArray","_classname","_enableGhost","_ghost","_location1","_dir","_object","_objectHelper","_helperColor"];
+private ["_passArray","_classname","_enableGhost","_ghost","_location1","_dir","_object","_objectHelper","_helperColor","_requireplot","_nearestPole","_distance","_maxBuildDistance"];
 
 _classname = _this select 0;
 _ghost = _this select 1;
 _offset = _this select 2;
-_enableGhost = _this select 3; //pass false trough args if not using ghost preview
+_enableGhost = _this select 3; //pass false through args if not using ghost preview
+_requireplot = _this select 4;
+_nearestPole = _this select 5;
+_distance = _this select 6;
 
 _passArray = [];
 _objectHelper = objNull;

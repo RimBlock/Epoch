@@ -5,12 +5,13 @@
 // Note:
 // This code calls server_publishFullObject which also saves damage, inventory and fuel.  Hitpoints are assumed to be empty as this is for buildables only.
 
-private ["_distance","_plotpole","_playerUID","_isowner", "_findNearestObjects","_classname","_objectID", "_objectUID", "_position", "_worldspace", "_object", "_key","_invW","_invM","_invB","_itemsExist","_charID","_inventory"];
+private ["_distance","_plotpole","_playerUID","_isowner", "_findNearestObjects","_classname","_objectID", "_objectUID", "_position", "_worldspace", "_object", "_key","_invW","_invM","_invB","_itemsExist","_charID","_inventory","_changecount"];
 
 _distance = (DZE_PlotPole select 0) + 1;
 _plotpole = nearestobject [(vehicle player),"Plastic_Pole_EP1_DZ"];
 
 _playerUID = [player] call FNC_GetPlayerUID;
+_changecount = 0;
 
 // Check is owner of the plot pole.
 
@@ -18,7 +19,7 @@ _isowner = [player, _plotpole] call FNC_check_owner;
 _itemsExist = false;
 
 if ((_isowner select 0 )) then {
-	_findNearestObjects = nearestObjects [_plotpole, [], _distance];
+	_findNearestObjects = (position _plotpole) nearEntities _distance;
 	{
 		_object = _x;
 		_classname = typeOf _object;
@@ -33,8 +34,12 @@ if ((_isowner select 0 )) then {
 				_objectID 	= _object getVariable ["ObjectID","0"];
 				_objectUID	= _object getVariable ["ObjectUID","0"];
 				
+				sleep 0.01;
+				
 				PVDZE_obj_Delete = [_objectID, _objectUID, player];
 				publicVariableServer "PVDZE_obj_Delete";
+				
+				sleep 0.01;
 				
 				_object setvariable["ObjectID", "0"];
 				
@@ -79,12 +84,12 @@ if ((_isowner select 0 )) then {
 				PVDZE_fullobj_Publish = [_charID,_object,_worldspace,_classname, _inventory, _hitpoints, _damage, _fuel];
 				publicVariableServer "PVDZE_fullobj_Publish";
 				
-				if !(DZE_APlotforLife) then {
-					_object setvariable["ownerPUID", dayz_characterID];
-				}else{
-					_object setvariable["ownerPUID", _playerUID];	
-				};	
+				_object setvariable["ownerPUID", _playerUID];	
+				
+				_changecount = _changecount + 1;
 			};
 		};
 	} count _findNearestObjects;
+	 cutText [format["Take Ownership: %1 objects ownership changed.",_changecount], "PLAIN DOWN"];
+
 };

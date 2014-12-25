@@ -33,20 +33,15 @@ _claimedBy = _obj getVariable["claimed","0"];
 _characterID = _obj getVariable["CharacterID","0"];
 _ownerID = _obj getVariable["ownerPUID","0"];;
 
-if (DZE_APlotforLife) then {
-	_playerUID = [player] call FNC_GetPlayerUID;
-}else{
-	_playerUID = dayz_characterID;
-};
+_playerID = [player] call FNC_GetPlayerUID;
 
 if (_alreadyPacking == 1) exitWith {DZE_ActionInProgress = false; cutText [format[(localize "str_epoch_player_124"),_text], "PLAIN DOWN"]};
 
-// Prompt user for password if _ownerID != _playerUID
-if ((_characterID == dayz_combination) || (_ownerID == _playerUID)) then {
+// Prompt user for password if _ownerID != _playerID
+if ((_characterID == dayz_combination) || (_ownerID == _playerID)) then {
 
 	// Check if any players are nearby if not allow player to claim item.
 	_playerNear = {isPlayer _x} count (player nearEntities ["CAManBase", 6]) > 1;
-	_playerID = [player] call FNC_GetPlayerUID;
 	
 	// Only allow if not already claimed.
 	if (_claimedBy == "0" || !_playerNear) then {
