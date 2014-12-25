@@ -16,7 +16,7 @@ _needText = localize "str_epoch_player_246";
 _playerUID = [player] call FNC_GetPlayerUID;
 
 // check for near plot
-_findNearestPoles = nearestObjects [(vehicle player), ["Plastic_Pole_EP1_DZ"], _distance];
+_findNearestPoles = (position (vehicle player)) nearEntities ["Plastic_Pole_EP1_DZ", _distance];
 _findNearestPole = [];
 
 {

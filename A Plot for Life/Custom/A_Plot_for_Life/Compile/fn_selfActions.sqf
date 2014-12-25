@@ -217,7 +217,7 @@ if (!isNull cursorTarget && !_inVehicle && !_isPZombie && (player distance curso
 		 };
 
 		 _plotDistance = (DZE_PlotPole select 0);
-		_PlotsmarkersNear = count (nearestObjects [_cursorTarget, ["Land_coneLight"], _PlotDistance]);
+		_PlotsmarkersNear = count (_cursorTarget nearEntities ["Land_coneLight", _PlotDistance]);
 
 		if (s_player_plot_boundary_on < 0) then {
 			If (_PlotsmarkersNear == 0 ) then{
@@ -320,7 +320,7 @@ if (!isNull cursorTarget && !_inVehicle && !_isPZombie && (player distance curso
 		//diag_log format["CREW: %1 ALLOW: %2",(count (crew _cursorTarget)),_allowTow];
 
 		if (_allowTow) then {
-			_liftHelis = nearestObjects [player, DZE_HeliAllowTowFrom, 15];
+			_liftHelis = (position player) nearEntities [DZE_HeliAllowTowFrom, 15];
 			{
 				if(!_found) then {
 					_posL = [_x] call FNC_getPos;
@@ -620,7 +620,7 @@ if (!isNull cursorTarget && !_inVehicle && !_isPZombie && (player distance curso
 		if (s_player_fuelauto < 0) then {
 			
 			// check if Generator_DZ is running within 30 meters
-			_findNearestGens = nearestObjects [player, ["Generator_DZ"], 30];
+			_findNearestGens = (position player) nearEntities ["Generator_DZ", 30];
 			_findNearestGen = [];
 			{
 				if (alive _x && (_x getVariable ["GeneratorRunning", false])) then {

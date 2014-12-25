@@ -19,7 +19,7 @@ _isowner = [player, _plotpole] call FNC_check_owner;
 _itemsExist = false;
 
 if ((_isowner select 0 )) then {
-	_findNearestObjects = nearestObjects [_plotpole, [], _distance];
+	_findNearestObjects = (position _plotpole) nearEntities _distance;
 	{
 		_object = _x;
 		_classname = typeOf _object;

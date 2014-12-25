@@ -15,13 +15,7 @@ if(_isPole) then {
 };
 
 // check for near plot
-_findNearestPoles = nearestObjects [(vehicle _player), ["Plastic_Pole_EP1_DZ"], _distance];
-
-{
-	if (alive _x) then {
-		_findNearestPole set [(count _findNearestPole),_x];
-	};
-} count _findNearestPoles;
+_findNearestPole = (position (vehicle _player)) nearEntities ["Plastic_Pole_EP1_DZ", _distance];
 
 _IsNearPlot = count (_findNearestPole);
 _nearestPole = _findNearestPole select 0;

@@ -6,7 +6,7 @@ _distance = (DZE_PlotPole select 0) + 5;
 
 // check for near plot
 _plotpole = nearestobject [(vehicle player),"Plastic_Pole_EP1_DZ"];
-_findNearestPoles = nearestObjects [_plotpole, ["Land_coneLight"], _distance];
+_findNearestPoles = (position _plotpole) nearEntities ["Land_coneLight", _distance];
 _validMarkers = [];
 _isnearplot = 0;
 
