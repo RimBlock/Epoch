@@ -29,27 +29,21 @@ _IsNearPlot = count (_findNearestPole);
 
 _canBuildOnPlot = false;
 
+_plotcheck = [player, false] call FNC_find_plots;
+_distance = _plotcheck select 0;
+_IsNearPlot = _plotcheck select 1;
+_nearestPole = _plotcheck select 2;
+
 if(_IsNearPlot == 0) then {
 	_canBuildOnPlot = true;
 } else {
 
-	// check nearby plots ownership && then for friend status
-	_nearestPole = _findNearestPole select 0;
-
-	// Find owner
-	_ownerID = _nearestPole getVariable["ownerPUID","0"];
-
-	// diag_log format["DEBUG BUILDING: %1 = %2", dayz_characterID, _ownerID];
-
-	// check if friendly to owner
-	if(_playerUID == _ownerID) then {
-		_canBuildOnPlot = true;
-	} else {
-		_friendlies		= player getVariable ["friendlyTo",[]];
-		// check if friendly to owner
-		if(_ownerID in _friendlies) then {
-			_canBuildOnPlot = true;
-		};
+	// Since there are plot poles nearby we need to check ownership && friend status
+	_buildcheck = [player, _nearestPole] call FNC_check_owner;
+	_isowner = _buildcheck select 0;
+	_isfriendly = _buildcheck select 1;
+	if ((_isowner) || (_isfriendly)) then {
+		_canBuildOnPlot = true;		
 	};
 };
 

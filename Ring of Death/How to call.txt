@@ -1,0 +1,1 @@
+_nil = [] execVM "custom\test\create_monster.sqf";
