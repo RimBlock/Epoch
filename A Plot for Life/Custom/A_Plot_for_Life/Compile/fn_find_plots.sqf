@@ -18,7 +18,7 @@ if(_isPole) then {
 _findNearestPole = (position (vehicle _player)) nearEntities ["Plastic_Pole_EP1_DZ", _distance];
 
 _IsNearPlot = count (_findNearestPole);
-_nearestPole = _findNearestPole select 0;
+if (_findNearestPole > 0) then{_nearestPole = _findNearestPole select 0;}else{_nearestPole = objNull;};
 _return = [_distance, _IsNearPlot, _nearestPole];
 
 _return

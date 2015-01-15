@@ -17,7 +17,9 @@ if (_playerUID == _ObjectOwner) then {
 
 _friendlies	= _player getVariable ["friendlyTo",[]];
 
-if (_playerUID in _friendlies) then {
+diag_log format ["[fn_check_owner] playerUID = %1, friendlies %2",_friendlies];
+
+if (_ObjectOwner in _friendlies) then {
 	_friendly = true;
 };
 
