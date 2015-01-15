@@ -70,7 +70,7 @@ KK_Functions (used in Precise Building): KillZoneKid (http://killzonekid.com/)
 *** References ***
 
 
-A Plot for Life Epochmod thread: http://epochmod.com/forum/index.php?/topic/11042-release-a-plot-for-life-v232-keep-your-buildables-on-death-take-plot-ownership/
+A Plot for Life Epochmod thread: http://epochmod.com/forum/index.php?/topic/11042-release-a-plot-for-life-v25-keep-your-buildables-on-death-take-plot-ownership/
 A Plot for Life Git: https://github.com/RimBlock/Epoch/tree/master/A%20Plot%20for%20Life
 
 Snap Pro Epochmod Thread: http://epochmod.com/forum/index.php?/topic/13886-141-snap-building-pro/
