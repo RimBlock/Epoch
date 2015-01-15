@@ -7,15 +7,18 @@ BIS_MPF_remoteExecutionServer = {
 };
 
 BIS_Effects_Burn =				{};
+
+call compile preprocessFileLineNumbers "custom\compile\KK_Functions.sqf";
+
 server_playerLogin =			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_playerLogin.sqf";
 server_playerSetup =			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_playerSetup.sqf";
 server_onPlayerDisconnect = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_onPlayerDisconnect.sqf";
-server_updateObject =			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_updateObject.sqf";
+server_updateObject =			compile preprocessFileLineNumbers "custom\compile\server_updateObject.sqf";
 server_playerDied =				compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_playerDied.sqf";
-server_publishObj = 			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_publishObject.sqf";
+server_publishObj = 			compile preprocessFileLineNumbers "custom\compile\server_publishObject.sqf";
 server_publishFullObject = 		compile preprocessFileLineNumbers "custom\compile\server_publishFullObject.sqf";
 server_deleteObj =				compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_deleteObj.sqf";
-server_swapObject =				compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_swapObject.sqf"; 
+server_swapObject =				compile preprocessFileLineNumbers "custom\compile\server_swapObject.sqf"; 
 server_publishVeh = 			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_publishVehicle.sqf";
 server_publishVeh2 = 			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_publishVehicle2.sqf";
 server_publishVeh3 = 			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_publishVehicle3.sqf";
