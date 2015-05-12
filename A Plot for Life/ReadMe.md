@@ -82,6 +82,8 @@ Add the following line to the bottom of your description.ext located in your MPM
 
 # Options
 
+Put these either in your init.sqf file or your variables.sqf file.
+
 Turn on A plot for Life (check ownership against SteamID).
 ```cpp
 DZE_APlotforLife = true;
