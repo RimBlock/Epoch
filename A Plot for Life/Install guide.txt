@@ -56,6 +56,8 @@ Add the following line to the bottom of your description.ext located in your MPM
 
 *** Turn on options ***
 
+Put this either in your init.sqf file or your variables.sqf file.
+
 Turn on Take Plot Ownership (take ownership of all items on a plot except locked items).  This can be used to realign old bases to the A Plot of Life ownership system or for raiding and taking over bases.
 
 DZE_PlotOwnership = true;
